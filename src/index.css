@@ -1,10 +1,52 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+
 #root{
  margin : 0;
  padding : 0;
- width : 100%
+ width : 100%;
 }
 
 body { 
   margin : 0;
   padding : 0;
+}
+
+
+.toggle_label{
+  position: relative;
+  width: 60px;
+  height: 25px;
+  display: block;
+  background: #d9d9d9;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: inset 0px 5px 15px rgba(0,0,0,0.3), inset 0px -5px 15px rgba(255,255,255,0.3);
+}
+.toggle_label:after{
+  content: '';
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  background: #f2f2f2;
+  border-radius: 100px;
+  left: 1px;
+  transition: 0.5s;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+.toggle_input:checked ~ .toggle_label:after{
+  left: 58px;
+  transform: translateX(-100%);
+  background: linear-gradient(180deg,#777,rgb(92, 92, 92));
+}
+.toggle_input:checked ~ .toggle_label{
+  background: #000000;
+}
+
+.toggle_input:checked + .toggle_label {
+  background: #000000;
+}
+.toggle_input{
+  display: none;
 }
