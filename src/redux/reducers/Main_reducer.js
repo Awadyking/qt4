@@ -4,9 +4,21 @@ const USER = JSON.parse(localStorage.getItem("user")) ?? undefined
 const logo_path = "" 
 const isLoading = false
 const Theme  = localStorage.getItem("theme") || "light"
-const element = document.documentElement
+const element = document.documentElement 
+const Dialog_data = {
+    isDialog : false ,
+    isCancelled : false , 
+    isFail : false ,
+    isSuccess : false ,
+    title : "" ,
+    body : ""
+} 
 
-const Value = { URL , token , logo_path , USER , isLoading , Theme}
+
+const Dailog_func = ()=>{}
+
+
+const Value = { URL , token , logo_path , USER , isLoading , Theme , Dialog_data , Dailog_func }
 
 export default function Main_Reducer(state = Value, action){
 
@@ -19,6 +31,22 @@ return {
     USER : action.value , 
 
 }
+
+case("dialog"):
+return {
+    ...Value , 
+    Dialog_data : action.value , 
+
+}
+
+
+case("dialog_func"):
+return {
+    ...Value , 
+    Dialog_func : action.value , 
+
+}
+
 
 case("token"):
 localStorage.setItem("token" , action.value) 

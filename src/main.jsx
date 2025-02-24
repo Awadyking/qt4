@@ -9,6 +9,8 @@ import {Provider} from "react-redux"
 import { MainStore } from './redux/Store.js'
 import E404 from './routes/E404.jsx'
 import Login from './routes/Login.jsx'
+import Register from './routes/Register.jsx'
+import APP_Dialog from './components/APP_Dialog.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,12 +18,15 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Header />
       <Main>
+
               <Routes>
                     <Route path='/' element={<App/>}></Route>
                     <Route path="/login" element={<Login/>}></Route>
+                    <Route path='/register' element={<Register/>} ></Route>
                     <Route path="*" element={<E404/>}></Route>
               </Routes>
         </Main>
+        <APP_Dialog/>
         </BrowserRouter>
       </Provider>
   </StrictMode>,
