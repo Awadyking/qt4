@@ -2,7 +2,7 @@ import { Button, Input } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import useFetcher from "../hooks/useFetcher";
 import { useDispatch, useSelector } from "react-redux";
-import { Dialog_action, Dialog_func_action } from "../redux/Types";
+import { Dialog_action, token_action, USER_action} from "../redux/Types";
 import { useState } from "react";
 
 export default function Login() {
@@ -22,20 +22,23 @@ return(
     </div>
      <Button variant="filled" className="h-10 w-40 dark:bg-green-700 mt-10 rounded-xl cursor-pointer"
      onClick={()=>{
-        useFetcher("POST" , URL + "/login" , {username , password} , {} , dis, () =>{
+        useFetcher("POST" , URL + "/login" , {username , password} , {} , dis, (x) =>{
+        dis(token_action(x.token))
+        dis(USER_action(JSON.stringify(x.user_info)))
         dis(Dialog_action({
             isDialog : true ,
-            isCancelled : true , 
+            isCancelled : false , 
             isFail : false ,
             isSuccess : true ,
             title : "عملية ناجحة" ,
             body : "تم تسجيل الدخول بنجاح" ,
+            func : ()=>{window.location.href = "/"}
         }))
         })
-        dis(Dialog_func_action(()=>{window.location.href = "/"}))
+        
      }}
      >تسجيل الدخول</Button>
-     <Link to="/register">
+     <Link to="/register/0">
         <p className="underline text-lg font-bold text-blue-700 mb-8 mt-4">ليس لديك حساب ؟ أنشئ حساباً</p>
         </Link>
     </div>

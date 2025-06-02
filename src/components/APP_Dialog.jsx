@@ -7,7 +7,7 @@ import { Dialog_action } from "../redux/Types";
 export default function APP_Dialog() {
 
 const dis = useDispatch()
- const  { Dialog_data , Dialog_func} = useSelector(state => state)
+ const  { Dialog_data } = useSelector(state => state)
 
 
   return (
@@ -44,18 +44,12 @@ const dis = useDispatch()
           >
             <span>إلغاء</span>
           </Button> 
-            <Button variant="gradient" className="cursor-pointer" color="green" onClick={Dialog_func}>
+            <Button variant="gradient" className="cursor-pointer" color="green" onClick={()=>{Dialog_data.func()}}>
                 <span>حسنا</span>
             </Button>
           </>
           : <>
-                <Button variant="gradient" className="cursor-pointer" color="green" onClick={()=>{dis(Dialog_action({
-              isDialog : false ,
-              isCancelled : false , 
-              isFail : false ,
-              isSuccess : false ,
-              title : "" ,
-            }))}}>
+                <Button variant="gradient" className="cursor-pointer" color="green" onClick={()=>{Dialog_data.func()}}>
                     <span>حسنا</span>
                   </Button>
           </> }

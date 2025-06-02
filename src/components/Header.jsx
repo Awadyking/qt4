@@ -14,7 +14,7 @@ pl-5 pr-6 bg-white dark:bg-slate-800 border-b-4 h-13 border-slate-700 dark:borde
 <Link to="/">
 <div className="flex h-12 items-center">
 <p className="text-xl font-sans font-bold dark:text-white ml-1">منصة</p>
-<img className="h-11 w-fit " src={logo_path}/> 
+<p className="text-3xl font-serif font-bold dark:text-white ml-1">QT4</p> 
 </div >
 </Link>
 <div className="h-13 w-fit flex items-center">

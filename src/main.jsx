@@ -16,6 +16,10 @@ import CreateExam from './routes/CreateExam.jsx'
 import Loading from './components/Loading.jsx'
 import UploadExam from './routes/UploadExam.jsx'
 import JoinExam from './routes/JoinExam.jsx'
+import Exam from './routes/Exam.jsx'
+import JoinCorrection from './routes/Correct_login.jsx'
+import Correction from './routes/Correction.jsx'
+import MyResult from './routes/MyResult.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -27,11 +31,15 @@ createRoot(document.getElementById('root')).render(
               <Routes>
                     <Route path='/' element={<App/>}></Route>
                     <Route path="/login" element={<Login/>}></Route>
-                    <Route path='/register' element={<Register/>} ></Route>
+                    <Route path='/register/:code' element={<Register/>} ></Route>
                     <Route path="/dashboard" element={<Dashboard/>} ></Route>
                     <Route path="/create-exam" element={<CreateExam/>} ></Route>
                     <Route path="/upload-exam" element={<UploadExam/>}></Route>
                     <Route path='/join-exam' element={<JoinExam/>} ></Route>
+                    <Route path='/exam/:id' element={<Exam/>} ></Route>
+                    <Route path='/correct-exam' element={<JoinCorrection/>} ></Route>
+                    <Route path='/correction/:exam_id/:password/:exam_code' element={<Correction/>} ></Route>
+                    <Route path="/exam-result" element={<MyResult/>}></Route>
                     <Route path="*" element={<E404/>}></Route>
               </Routes>
         </Main>

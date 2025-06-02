@@ -4,15 +4,18 @@ import useFetcher from "../hooks/useFetcher"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-export default function JoinExam(){
 
-const [QUES_ID , SET_QUES_ID] = useState("")
+export default function MyResult(){
+
+const [QUES_ID , SET_QUES_ID] = useState(localStorage.getItem("lastExam"))
+const [isResult , SET_isResult] = useState(false)
 const {URL , token} = useSelector(state => state)
 const dis = useDispatch()
 const nav = useNavigate()
 
 
 
+if(isResult == false){
     return (
         <>
         <div className="flex flex-col w-full items-center mt-20">
@@ -23,15 +26,19 @@ const nav = useNavigate()
         value={QUES_ID}
         onChange={(e)=>{SET_QUES_ID(e.target.value)}}
         ></input>
-           <Button color="orange" className="flex cursor-pointer justify-between mt-5" onClick={()=>{
-            useFetcher("GET" , URL + `/get-exam-details/?token=${token}&exam_id=${QUES_ID}` , {} , {} , dis , (x) =>{
-                nav(`/exam/${QUES_ID}`)
-                })
+           <Button color="lime" className="flex cursor-pointer justify-between mt-5" onClick={()=>{
+            useFetcher("GET" , URL + `/get-exam-details/?token=${token}&exam_id=${QUES_ID}` , {} , {} , dis , (x) =>{})
            }}>
-              الدخول إلى شاشة البدأ
+              عرض النتيجة
             </Button>
         </div>
         
         </>
-    )
+
+        )
+}else if(isResult == true){
+
+}
+
+
 }

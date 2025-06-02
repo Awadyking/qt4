@@ -11,14 +11,12 @@ const Dialog_data = {
     isFail : false ,
     isSuccess : false ,
     title : "" ,
-    body : ""
+    body : "" , 
+    func : () => {}
 } 
 
 
-const Dailog_func = ()=>{}
-
-
-const Value = { URL , token , logo_path , USER , isLoading , Theme , Dialog_data , Dailog_func }
+const Value = { URL , token , logo_path , USER , isLoading , Theme , Dialog_data }
 
 export default function Main_Reducer(state = Value, action){
 
@@ -36,14 +34,6 @@ case("dialog"):
 return {
     ...Value , 
     Dialog_data : action.value , 
-
-}
-
-
-case("dialog_func"):
-return {
-    ...Value , 
-    Dialog_func : action.value , 
 
 }
 

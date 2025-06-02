@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CryptoJS from "crypto-js"
 import { Dialog_action } from "../redux/Types";
+import useFetcher from "../hooks/useFetcher";
 
 export default function UploadExam() {
 
@@ -40,6 +41,17 @@ function Save(){
             isSuccess : false ,
             title : "عملية غير ناجحة" ,
             body :   "كود فك التشفير خاطئ" ,
+            func : ()=>{
+              dis(Dialog_action({
+                isDialog : false ,
+                isCancelled : false , 
+                isFail : false ,
+                isSuccess : false ,
+                title : "" ,
+                body :   "" ,
+                func : ()=>{}
+            }))
+            }
         }))
   }
 
@@ -49,26 +61,33 @@ function Save(){
         description : Decrypt(data.config.description , QUES_SECRET_KEY) , 
         prize : Decrypt(data.config.prize , QUES_SECRET_KEY) , 
         password : Decrypt(data.config.password , QUES_SECRET_KEY) , 
-        enter_time :  Number(Decrypt(data.config.enter_time , QUES_SECRET_KEY)) ,
+        screen_time :  Number(Decrypt(data.config.enter_time , QUES_SECRET_KEY)) ,
         exam_time : Number(Decrypt(data.config.exam_time , QUES_SECRET_KEY)) , 
         isPrivate : isPrivate ,
-        Whitelist : US
+        whitelist : US
     } , 
     exam : data.exam.map((i)=>{
         return {
             question : Decrypt(i.question , QUES_SECRET_KEY) , 
-            isChoosen : i.isChoosen ,
-            correct_answer : Decrypt(i.correct_answer , QUES_SECRET_KEY) ,
+            correct_answer : i.correct_answer ,
             choices : i.choices.map((j)=>{
               return Decrypt(j , QUES_SECRET_KEY)
             })
             }
-    }),
-    token : token
+    })
 }
 
-
-
+useFetcher("POST" , URL + `/create-exam?token=${token}` , exam , {} , dis , (x) =>{
+  dis(Dialog_action({
+    isDialog : true ,
+    isCancelled : false , 
+    isFail : false ,
+    isSuccess : true ,
+    title : "عملية ناجحة" ,
+    body : x.detail.ar_msg + " , الكود : " + x.detail.exam_id ,
+    func : ()=>{window.location.href = "/"}
+}))
+})
 }
 
     const handleFileChange = (event) => {
