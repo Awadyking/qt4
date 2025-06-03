@@ -20,6 +20,8 @@ import Exam from './routes/Exam.jsx'
 import JoinCorrection from './routes/Correct_login.jsx'
 import Correction from './routes/Correction.jsx'
 import MyResult from './routes/MyResult.jsx'
+import Ranks from './routes/Ranks.jsx'
+import About from './routes/about.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -40,6 +42,8 @@ createRoot(document.getElementById('root')).render(
                     <Route path='/correct-exam' element={<JoinCorrection/>} ></Route>
                     <Route path='/correction/:exam_id/:password/:exam_code' element={<Correction/>} ></Route>
                     <Route path="/exam-result" element={<MyResult/>}></Route>
+                    <Route path="/rank/:exam_id" element={<Ranks/>}></Route>
+                    <Route path="/about" element={<About/>} ></Route>
                     <Route path="*" element={<E404/>}></Route>
               </Routes>
         </Main>
