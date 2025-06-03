@@ -53,13 +53,14 @@ const cards = [
 
 
 useEffect(() => {
-
+      window.scrollTo(0 , 0)
   if(!USER){
     window.location.href = "/login"
   }else{
     SET_name(JSON.parse(USER).name)
   }
 } , [])
+
 
     return (
       <>

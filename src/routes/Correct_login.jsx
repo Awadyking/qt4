@@ -7,7 +7,7 @@ import { Dialog_action } from "../redux/Types"
 
 export default function JoinCorrection(){
 
-const [QUES_ID , SET_QUES_ID] = useState("")
+const [QUES_ID , SET_QUES_ID] = useState(localStorage.getItem("lastCreation"))
 const [QUES_PASS , SET_QUES_PASS] = useState("")
 const [QUES_CODE , SET_QUES_CODE] = useState("")
 const {URL , token} = useSelector(state => state)

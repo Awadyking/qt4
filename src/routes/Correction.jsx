@@ -105,14 +105,21 @@ useEffect(()=>{
                 }))
 
           }else{
-            let choosenList = []
+            let sendList = []
             SET_writtenList(x.exam_written_questions)
             x.exam_choosen_answer.map((i)=>{
-                choosenList.push({
+                sendList.push({
                     question_id : i.question_id , 
                     answer : Decrypt(i.correct_answer , exam_code)
                 })
             })
+            x.exam_written_questions.map((i)=>{
+                sendList.push({
+                    question_id : i.question_id , 
+                    answer : Decrypt(i.correct_answer , exam_code)
+                })
+            })
+
                     let yx = []
                             x.exam_written_questions.map((i)=>{
                                 var z = []
@@ -134,7 +141,7 @@ useEffect(()=>{
                                 })
                             })
                             SET_writtenList(yx)
-       useFetcher("POST" , URL + `/post-decrypted-answer/?token=${token}&exam_id=${exam_id}` , {password : {password : password} , correct_answers : choosenList } , {} , dis , (y)=>{
+       useFetcher("POST" , URL + `/post-decrypted-answer/?token=${token}&exam_id=${exam_id}` , {password : {password : password} , correct_answers : sendList } , {} , dis , (y)=>{
         SET_isLoaded(true)
         dis(Dialog_action({
                     isDialog : true ,
@@ -194,9 +201,9 @@ return (
                 <p className="text-2xl dark:text-white w-full m-0 text-center font-bold "> شاشة التصحيح</p>
                 <p className="text-lg dark:text-white w-7/12 m-0 mt-2 text-right font-bold"> عدد الاجابات المتبقية : {count_of_answers}</p>
                 <p className="text-lg dark:text-white w-7/12 m-0 mt-2 text-right font-bold"> السؤال : {cur_ques} ..؟</p>
-                <div className="flex w-7/12 h-fit">
-                <p className="text-lg dark:text-white w-2/12 m-0 mt-3 text-right font-bold">الإجابة الصحيحة : </p>
-                <p className="text-lg text-green-500 w-2/12 m-0 mt-3 text-right font-bold">`{cur_correct_answer}`</p>
+                <div className="flex w-7/12 xs:w-9/12 h-fit">
+                <p className="text-lg dark:text-white w-4/12 lg:w-2/12 m-0 mt-3 text-right font-bold">الإجابة الصحيحة : </p>
+                <p className="text-lg text-green-500 w-4/12 lg:w-2/12 m-0 mt-3 text-right font-bold">`{cur_correct_answer}`</p>
                </div>
                <p className="text-lg dark:text-white w-7/12 m-0 mt-2 text-right font-bold">الإجابة : </p>
             <textarea className="w-7/12 h-28 pr-4 mt-4 bg-white bg-opacity-65 dark:bg-opacity-80 outline-none rounded-md border-b-green-400 border-b-4" 
@@ -270,10 +277,20 @@ else if(isStart == "done"){
                                isSuccess : true ,
                                title : "عملية ناجحة" ,
                                body : "تم رفع التصحيح بنجاح" ,
-                               func : ()=>{nav("/dashboard")}
+                               func : ()=>{
+                                nav("/dashboard") ; 
+                            dis(Dialog_action({
+                            isDialog : false ,
+                            isCancelled : false , 
+                            isFail : false ,
+                            isSuccess : false ,
+                            title : "" ,
+                            body :   "" ,
+                            func : ()=>{}
+                            })) 
+                               }
                            }))
                            })
-    console.log(data)
 
                            }}>
                               رفع التصحيح

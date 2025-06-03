@@ -33,7 +33,7 @@ function Decrypt(text , key){
 
 function Save(){
 
-  if( Decrypt(data.config.name , QUES_SECRET_KEY) == ""){
+  if(Decrypt(data.config.name , QUES_SECRET_KEY) == ""){
         dis(Dialog_action({
             isDialog : true ,
             isCancelled : false , 
@@ -53,6 +53,7 @@ function Save(){
             }))
             }
         }))
+        return
   }
 
   const exam ={
@@ -78,13 +79,14 @@ function Save(){
 }
 
 useFetcher("POST" , URL + `/create-exam?token=${token}` , exam , {} , dis , (x) =>{
+localStorage.setItem("lastCreation" , x.exam_id) ;
   dis(Dialog_action({
     isDialog : true ,
     isCancelled : false , 
     isFail : false ,
     isSuccess : true ,
     title : "عملية ناجحة" ,
-    body : x.detail.ar_msg + " , الكود : " + x.detail.exam_id ,
+    body : x.ar_msg + " , الكود : " + x.exam_id ,
     func : ()=>{window.location.href = "/"}
 }))
 })
