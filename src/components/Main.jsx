@@ -19,15 +19,15 @@ useEffect(()=>{
                 document.getElementById("dark-mode").checked = true
             }
 
-// if(!token && 
-//  window.location.pathname != "/login" &&
-//  window.location.pathname != "/" && 
-//  window.location.pathname != "/register"
-// ) {window.location.href = "/login"}
+if(!token && 
+ window.location.pathname != "/login" &&
+ window.location.pathname != "/" && 
+ window.location.pathname != "/register"
+) {window.location.href = "/login"}
 
 } , [])
 
-return(<div className="main w-full flex flex-col items-center bg-slate-200 dark:bg-gray-800 ">
+return(<div className="main w-full flex flex-col items-center bg-slate-300 dark:bg-gray-800 ">
 {children}
 </div>)
 

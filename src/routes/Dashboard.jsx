@@ -64,12 +64,16 @@ useEffect(() => {
 
     return (
       <>
-      <p className="text-xl dark:text-white w-9/12 m-0 text-right mt-2 font-bold ">مرحبا {name} !</p>
-      <div className="w-10/12 flex flex-wrap justify-evenly mt-6">
+      <div className="w-10/12 flex justify-start mt-4">
+      <p className="text-xl dark:text-white m-0 text-right mt-2 font-bold ">مرحبا </p>
+      <p className="text-xl dark:text-cyan-400 text-cyan-600  mr-2 m-0 text-right mt-2 font-bold underline">{name}</p>
+      <p className="text-xl dark:text-white m-0 text-right mt-2 mr-1 font-bold "> !</p>
+      </div>
+      <div className="w-10/12 flex flex-wrap justify-evenly mt-8">
         {cards.map((i, index) => {
           return <Card obj={i} key={index} />;
         })}
-        <a target="_blank" rel="noreferrer" href="">
+        <a target="_blank" rel="noreferrer" href="https://prod.liveshare.vsengsaas.visualstudio.com/join?B7CCFB46D0964192A6BA0882F0AA5BB7CFAB">
           <div className="cursor-pointer w-60 h-36 dark:bg-gray-100 bg-gray-800 bg-opacity-60 dark:bg-opacity-80 rounded-lg mb-10 flex flex-col items-center">
             <div className="flex w-10/12 mt-4">
               <img className="w-10 h-10" src={"/img/whatsapp.png"}></img>

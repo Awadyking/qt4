@@ -22,6 +22,7 @@ import Correction from './routes/Correction.jsx'
 import MyResult from './routes/MyResult.jsx'
 import Ranks from './routes/Ranks.jsx'
 import About from './routes/about.jsx'
+import MyShares from './routes/MyShares'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -44,6 +45,7 @@ createRoot(document.getElementById('root')).render(
                     <Route path="/exam-result" element={<MyResult/>}></Route>
                     <Route path="/rank/:exam_id" element={<Ranks/>}></Route>
                     <Route path="/about" element={<About/>} ></Route>
+                    <Route path="/my-shares" element={<MyShares/>} ></Route>
                     <Route path="*" element={<E404/>}></Route>
               </Routes>
         </Main>

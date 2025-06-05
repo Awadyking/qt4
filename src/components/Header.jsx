@@ -8,7 +8,7 @@ export default function Header() {
     const {logo_path} = useSelector(state => state)
 
 return <header className="w-full flex justify-between items-center sticky top-0
-pl-5 pr-6 bg-white dark:bg-slate-800 border-b-4 h-13 border-slate-700 dark:border-white 
+pl-5 pr-6 bg-white dark:bg-slate-800 border-b-4 h-13 border-cyan-400 dark:border-white 
 " >
 
 <Link to="/">

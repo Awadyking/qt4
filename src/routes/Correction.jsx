@@ -82,8 +82,7 @@ useEffect(()=>{
     useFetcher("GET" , URL + `/get-written-answer/?token=${token}&exam_id=${exam_id}&password=${password}` , {} , {} , dis , (x)=>{ 
        
     if(x.isDecrypted == 0){
-        if(Decrypt(x.exam_choosen_answer[0].correct_answer , exam_code) == "" ||
-             Decrypt(x.exam_written_questions[0].correct_answer , exam_code)== ""){
+        if(Decrypt(x.exam_choosen_answer[0].correct_answer , exam_code) == ""){
                 dis(Dialog_action({
                     isDialog : true ,
                     isCancelled : false , 
@@ -224,6 +223,7 @@ return (
         return(    <div className="flex flex-col w-full items-center mt-20">
                <Button color="blue" className="flex cursor-pointer justify-between mt-5" onClick={()=>{
                 if(isLoaded){
+                    if(writtenList.length > 0){
                     let counter = 0
                     writtenList.map((i)=>{
                        counter = counter + i.users_answers.length
@@ -237,6 +237,9 @@ return (
                     SET_length_of_questions(writtenList.length)
                     SET_length_of_users_answers(writtenList[0].users_answers.length)
                     SET_isStart("go")
+                }else{
+                    SET_isStart("done")
+                }
                 }
                 else{
                     dis(Dialog_action({
