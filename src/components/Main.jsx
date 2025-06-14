@@ -19,10 +19,13 @@ useEffect(()=>{
                 document.getElementById("dark-mode").checked = true
             }
 
+let path = window.location.pathname
+
 if(!token && 
- window.location.pathname != "/login" &&
- window.location.pathname != "/" && 
- window.location.pathname != "/register"
+ path != "/login" &&
+ path != "/" && 
+path[0] + path[1] + path[2] + path[3] + path[4] + path[5] + path[6] + path[7] + path[8] != "/register"
+
 ) {window.location.href = "/login"}
 
 } , [])
