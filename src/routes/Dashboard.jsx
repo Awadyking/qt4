@@ -73,7 +73,7 @@ useEffect(() => {
         {cards.map((i, index) => {
           return <Card obj={i} key={index} />;
         })}
-        <a target="_blank" rel="noreferrer" href="https://whatsapp.qt4.online/">
+        <a target="_blank" rel="noreferrer" href="https://whatsapp.com/channel/0029Vb6SJeRLI8Ye4vBeIj0u">
           <div className="cursor-pointer w-60 h-36 dark:bg-gray-100 bg-gray-800 bg-opacity-60 dark:bg-opacity-80 rounded-lg mb-10 flex flex-col items-center">
             <div className="flex w-10/12 mt-4">
               <img className="w-10 h-10" src={"/img/whatsapp.png"}></img>
