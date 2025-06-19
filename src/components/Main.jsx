@@ -8,6 +8,8 @@ const {Theme , token} = useSelector(state => state)
 const element = document.documentElement
 const dis = useDispatch()
 
+
+useEffect(()=>{window.scrollTo({ top: 0, behavior: 'smooth' })} , [window.location.href])
 useEffect(()=>{
         if(Theme == "dark"){
                 element.classList.add("dark")
@@ -19,6 +21,8 @@ useEffect(()=>{
                 document.getElementById("dark-mode").checked = true
             }
 
+
+            
 let path = window.location.pathname
 
 if(!token && 

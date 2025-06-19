@@ -26,12 +26,54 @@ function Decrypt(text , key){
       const decrypted = bytes.toString(CryptoJS.enc.Utf8)
         return decrypted
     }catch {
-        throw new Error("Decryption Error")
+                dis(Dialog_action({
+            isDialog : true ,
+            isCancelled : false , 
+            isFail : true ,
+            isSuccess : false ,
+            title : "عملية غير ناجحة" ,
+            body :   "كود فك التشفير خاطئ" ,
+            func : ()=>{
+              dis(Dialog_action({
+                isDialog : false ,
+                isCancelled : false , 
+                isFail : false ,
+                isSuccess : false ,
+                title : "" ,
+                body :   "" ,
+                func : ()=>{}
+            }))
+            }
+        }))
     }
 }
 
 
 function Save(){
+if(data.config == undefined  || data.exam == undefined){
+          dis(Dialog_action({
+            isDialog : true ,
+            isCancelled : false , 
+            isFail : true ,
+            isSuccess : false ,
+            title : "عملية غير ناجحة" ,
+            body :   "ملف غير صالح" ,
+            func : ()=>{
+              dis(Dialog_action({
+                isDialog : false ,
+                isCancelled : false , 
+                isFail : false ,
+                isSuccess : false ,
+                title : "" ,
+                body :   "" ,
+                func : ()=>{}
+            }))
+            }
+        }))
+        return
+}
+
+
 
   if(Decrypt(data.config.name , QUES_SECRET_KEY) == ""){
         dis(Dialog_action({
@@ -90,6 +132,7 @@ localStorage.setItem("lastCreation" , x.exam_id) ;
     func : ()=>{window.location.href = "/"}
 }))
 })
+
 }
 
     const handleFileChange = (event) => {
